@@ -2,3 +2,15 @@ logging:
   level:
     '[org.springframework.web]': debug
   file: logs/petclinic.log
+  
+#Log seviyeleri
+#OFF
+#FATAL
+#ERROR
+#WARN
+#INFO
+#DEBUG
+#TRACE
+ 
+
+ 
