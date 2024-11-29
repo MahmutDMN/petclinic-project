@@ -23,6 +23,7 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
+		<!-- degisiklik yapılan kismı aninda devreye alinması saglanir.-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
