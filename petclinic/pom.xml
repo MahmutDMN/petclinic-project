@@ -22,14 +22,45 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
-		<!-- degisiklik yapılan kismı aninda devreye alinması saglanir.-->
+
+		<!-- degisiklik yapılan kismı aninda devreye alinması saglanir. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional><!-- uygulamanin sadece geliştirilme ortaminda yer alacaktir  -->
+			<optional>true</optional>
+			<!-- uygulamanin sadece geliştirilme ortaminda yer alacaktir -->
 		</dependency>
-		
+
+
+
+
+
+
+
+
+
+
+		<!-- Lombok aktivasyonu dokuman -> https://projectlombok.org/setup/eclipse -->
+		<!-- Lombok aktivasyonu ide de aktif etme ->help -> install new software 
+			-> https://projectlombok.org/p2 -->
+		<!-- Yuklendikten sonra ideyi restart et yada ac kapa yap aktiflesir -->
+		<!-- scope -> provided Bu sadece derleme ve calistirma zamanında dahil 
+			eder paketlemeye dahil etmez -->
+
+		<!-- <dependency> <groupId>org.projectlombok</groupId> <artifactId>lombok</artifactId> 
+			<version>1.18.30</version> <scope>provided</scope> </dependency> -->
+
+
+
+		<!-- spring-boot-configuration-processor, @ConfigurationProperties ile 
+			yapılandırılmış konfigürasyon sınıflarının derleme zamanında işlenmesini 
+			sağlar. IDE entegrasyonu ile otomatik tamamlama ve hata tespiti özellikleri 
+			sunar. Type-safe konfigürasyonları güvenli bir şekilde bağlama ve yapılandırma 
+			hatalarını önceden tespit etme işlemini kolaylaştırır. -->
+			
+			
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-configuration-processor</artifactId> 
+			<optional>true</optional> </dependency> -->
 	</dependencies>
 
 	<properties>
@@ -43,9 +74,5 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		
-		
-		
-
 	</build>
 </project>
