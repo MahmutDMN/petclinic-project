@@ -44,7 +44,9 @@ public class PetClinicController {
 	 *                  bakilir
 	 * 
 	 * 
-	 *                  http://localhost:8080/pcs
+	 *                  http://localhost:8080/pcs http://localhost:8080/
+	 * @JSP sayfaları src/main/webapps dizini altında bir lokasyonda
+	 *      oluşturulmalidir.Dolayisi ile packaging tipi war olmalidir.
 	 */
 	public String welcome() {
 		return "Welcome to PetClinic Word";

@@ -5,7 +5,8 @@
 	<groupId>com.javaegitimleri</groupId>
 	<artifactId>petclinic</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<!-- <packaging>jar</packaging> --><!-- Burada jsp fileları olacagı icin war olarak degistirdik. -->
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -29,6 +30,19 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 			<!-- uygulamanin sadece geliştirilme ortaminda yer alacaktir -->
+		</dependency>
+
+		<dependency>
+			<!-- Tomcat ile calisirken jsp sayfasının derlenebilmesi icin jasper compiler 
+				dahil edildi. -->
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		
+		<dependency>
+		<!-- Jstl tag kutuphanesinin html'e benzeyen taglerini kullanmamızı saglar -->
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
 		</dependency>
 
 
@@ -57,10 +71,12 @@
 			sağlar. IDE entegrasyonu ile otomatik tamamlama ve hata tespiti özellikleri 
 			sunar. Type-safe konfigürasyonları güvenli bir şekilde bağlama ve yapılandırma 
 			hatalarını önceden tespit etme işlemini kolaylaştırır. -->
-			
-			
+
+
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-configuration-processor</artifactId> 
 			<optional>true</optional> </dependency> -->
+			
+			
 	</dependencies>
 
 	<properties>
