@@ -26,6 +26,22 @@ public class PetClinicController {
 	 *               bunun bir view olarak render etmeye calısır bunun onune geçmek
 	 *               icin responsun bodysi oldugunu göstermek gerekir
 	 * 
+	 * @RequestMapping Spring Boot eslesmeyen web isteklerini statik resource olarak
+	 *                 cozumler.
+	 * 
+	 *                 Bütün eslesmeyen resourceslar static resource (/**) static
+	 *                 resource olarak ele alınır.(Html, Css, Js dosyaları static
+	 *                 resourceslara ornektir.)
+	 * 
+	 * @src/main/resources/application.properties icerisinde
+	 *                                            spring.mvc.static-path-pattern=/static-content/**
+	 *                                            olarakta sadece bu path altında
+	 *                                            eslesenler konfigure edilir.
+	 * 
+	 * @SpringFramework bunu static web resourcesleri ilk önce META-INF/resources/
+	 *                  dizini altında arar.Yoksa sırasıyla resources/ ,static/
+	 *                  public/dizini altında arar.En son src/main/webapps altına
+	 *                  bakilir
 	 * 
 	 * 
 	 *                  http://localhost:8080/pcs
