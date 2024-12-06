@@ -11,14 +11,14 @@
         <body>
             <table>
                 <thead>
-                    <tr>
+                    <tr style="font-weight: bold;" bgcolor="lightblue">
                         <td>ID</td>
                         <td>First Name</td>
                         <td>Last Name</td>
                     </tr>
                 </thead>
-                <c:forEach items="${owners}" var="owner">
-                    <tr>
+                <c:forEach items="${owners}" var="owner" varStatus="status">
+                    <tr bgcolor="${status.index % 2 == 0 ? 'white': 'lightblue'}">
                         <td>${owner.id}</td>
                         <td>${owner.firstName}</td>
                         <td>${owner.lastName}</td>
