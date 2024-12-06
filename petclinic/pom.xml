@@ -38,14 +38,27 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		<!-- Jstl tag kutuphanesinin html'e benzeyen taglerini kullanmamızı saglar -->
-		<groupId>javax.servlet</groupId>
-		<artifactId>jstl</artifactId>
+			<!-- Jstl tag kutuphanesinin html'e benzeyen taglerini kullanmamızı saglar -->
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
 		</dependency>
 
+		<!-- unit test icin eklendi. -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<!-- Bu bagımlılıgın artifact olusturuldugunda artifacta dahil edilmesini 
+				engelliyor -->
+		</dependency>
 
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 
 
@@ -75,8 +88,8 @@
 
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-configuration-processor</artifactId> 
 			<optional>true</optional> </dependency> -->
-			
-			
+
+
 	</dependencies>
 
 	<properties>
