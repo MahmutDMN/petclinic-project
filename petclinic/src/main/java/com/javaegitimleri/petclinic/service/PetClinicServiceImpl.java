@@ -3,11 +3,13 @@ package com.javaegitimleri.petclinic.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.javaegitimleri.petclinic.dao.OwnerRepository;
 import com.javaegitimleri.petclinic.exception.OwnerNotFoundException;
 import com.javaegitimleri.petclinic.model.Owner;
 
+@Service
 public class PetClinicServiceImpl implements PetClinicService {
 	
 	@Autowired
