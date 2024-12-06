@@ -1,8 +1,12 @@
 package com.javaegitimleri.petclinic.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.javaegitimleri.petclinic.service.PetClinicService;
 
 /**
  * Bu anatasyon sayesinde Spring container bir kontroler beanı yaratacak gelen
@@ -12,8 +16,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PetClinicController {
 
-	@RequestMapping("/pcs")
-	@ResponseBody
+	@Autowired // Boylece springcontainer bootstrap sırasında PetClinicService i controller sınıfına enjecte edicek.
+	private PetClinicService petClinicService;
+	
+	@RequestMapping("/owners")
+	public ModelAndView getOwners() {
+		ModelAndView maw= new ModelAndView();
+		maw.addObject("owners", petClinicService.findOwners());
+		maw.setViewName("owners");
+		return maw;
+	}
+	
+	
+
+	
+	
 	/**
 	 * @Controller, Spring Framework'de kullanılan bir anotasyondur ve temel olarak
 	 * bir sınıfı web katmanında bir kontrolcü olarak tanımlamak için kullanılır.
@@ -48,9 +65,12 @@ public class PetClinicController {
 	 * @JSP sayfaları src/main/webapps dizini altında bir lokasyonda
 	 *      oluşturulmalidir.Dolayisi ile packaging tipi war olmalidir.
 	 */
+	@RequestMapping("/pcs")
+	@ResponseBody
 	public String welcome() {
 		return "Welcome to PetClinic Word";
 
-	}
+	}	
+	
 
 }
