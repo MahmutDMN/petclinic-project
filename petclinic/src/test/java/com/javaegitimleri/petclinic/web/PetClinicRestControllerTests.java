@@ -1,5 +1,10 @@
 package com.javaegitimleri.petclinic.web;
 
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -52,6 +57,47 @@ public class PetClinicRestControllerTests {
 		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
 		MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("Mahmut"));
 
+	}
+	
+	@Test
+	public void testGetOwnersByLastName() {
+		ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners?ln=Duman", List.class);
+		
+		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
+		
+		List<Map<String, String>> body = response.getBody();
+		
+		List<String> firstNames = body.stream().map(e->e.get("firstName")).collect(Collectors.toList());
+		
+		//basarili durum
+		MatcherAssert.assertThat(firstNames, Matchers.contains("Mahmut", "Alper Sahin", "Alperen", "Hakan"));
+		
+		//hatali durum
+//		MatcherAssert.assertThat(firstNames, Matchers.contains("Mahmut", "Alper Sahin", "Alperen1", "Hakan"));
+		
+	}
+	
+	public void testGetOwners() {
+		ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners", List.class);
+		
+		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
+		
+		List<Map<String, String>> body = response.getBody();
+		
+		List<String> firstNames = body.stream().map(e->e.get("firstName")).collect(Collectors.toList());
+		
+		//basarili durum
+		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut"));
+		/*
+		 * MatcherAssert.assertThat(): Bu, bir doğrulama (assertion) yapar. firstNames koleksiyonunun, belirtilen şartları sağladığından emin olmak için kullanılır.
+		 * Matchers.containsInAnyOrder("Alper"):
+		 * Bu, firstNames koleksiyonunun öğelerinin herhangi bir sırayla "Alper"
+		 * öğesini içerip içermediğini kontrol eder. Yani, koleksiyonun sırası önemli değildir;
+		 * yalnızca belirli öğe veya öğeler olup olmadığına bakılır.
+		 *
+		 * */
+		
+		
 	}
 	
 	/**
