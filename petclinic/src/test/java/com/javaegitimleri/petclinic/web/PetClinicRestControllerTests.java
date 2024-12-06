@@ -61,7 +61,7 @@ public class PetClinicRestControllerTests {
 	
 	@Test
 	public void testGetOwnersByLastName() {
-		ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners?ln=Duman", List.class);
+		ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owner?ln=Duman", List.class);
 		
 		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
 		
@@ -70,13 +70,14 @@ public class PetClinicRestControllerTests {
 		List<String> firstNames = body.stream().map(e->e.get("firstName")).collect(Collectors.toList());
 		
 		//basarili durum
-		MatcherAssert.assertThat(firstNames, Matchers.contains("Mahmut", "Alper Sahin", "Alperen", "Hakan"));
+		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut", "Alperen", "Hakan"));
 		
 		//hatali durum
-//		MatcherAssert.assertThat(firstNames, Matchers.contains("Mahmut", "Alper Sahin", "Alperen1", "Hakan"));
+//		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut", "Alperen1", "Hakan"));
 		
 	}
 	
+	@Test
 	public void testGetOwners() {
 		ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners", List.class);
 		
@@ -86,8 +87,11 @@ public class PetClinicRestControllerTests {
 		
 		List<String> firstNames = body.stream().map(e->e.get("firstName")).collect(Collectors.toList());
 		
+		//hatalı durum
+//		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut", "Alper Sahin", "Alperen", "Hakan", "Ahmet"));
+
 		//basarili durum
-		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut"));
+		MatcherAssert.assertThat(firstNames, Matchers.containsInAnyOrder("Mahmut", "Alperen", "Hakan", "Alper Sahin"));
 		/*
 		 * MatcherAssert.assertThat(): Bu, bir doğrulama (assertion) yapar. firstNames koleksiyonunun, belirtilen şartları sağladığından emin olmak için kullanılır.
 		 * Matchers.containsInAnyOrder("Alper"):
