@@ -1,6 +1,7 @@
 package com.javaegitimleri.petclinic.web;
 
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -125,5 +126,24 @@ public class PetClinicRestControllerTests {
 	 * </dependency>
 	 * 
 	 */
+	
+	@Test
+	public void testCreateOwner() {
+		
+		Owner owner=new Owner();
+		owner.setFirstName("Mustafa");
+		owner.setLastName("Kahraman");
+		
+		//bu method Uri da ekleme yapılan owner'ın id sini path'e setleyerek döner
+		
+		URI location = restTemplate.postForLocation("http://localhost:8080/rest/owner", owner);
+
+		Owner owner2 = restTemplate.getForObject(location, Owner.class);
+		
+		MatcherAssert.assertThat(owner2.getFirstName(), Matchers.equalTo(owner.getFirstName()));	
+		MatcherAssert.assertThat(owner2.getLastName(), Matchers.equalTo(owner.getLastName()));
+		
+		
+	}
 
 }
