@@ -10,14 +10,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * otomatik olarak belirtilen HTTP durum kodu döndürülür.
  */
 
-@ResponseStatus(code=HttpStatus.NOT_FOUND)
-public class OwnerNotFoundException extends RuntimeException {
+@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+public class InternalServerException extends RuntimeException {
 
-	public OwnerNotFoundException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
+	public InternalServerException(Throwable cause) {
+		super(cause);
 	}
-	
-	
 
 }

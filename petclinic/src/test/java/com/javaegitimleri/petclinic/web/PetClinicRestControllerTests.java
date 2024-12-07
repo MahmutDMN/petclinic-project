@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -172,7 +173,9 @@ public class PetClinicRestControllerTests {
 		try {
 			restTemplate.getForEntity("http://localhost:8080/rest/owner/4", Owner.class);
 			Assert.fail("shuold have not returned owner");
-		} catch (RestClientException e) {
+		// } catch (RestClientException e) { Önceki Hali(Hata degilde ResponseEntity dönüsü yapılırken) bu şekilde ele alınıyordu
+		} catch (HttpClientErrorException ex) { // catch (RestClientException e) { Önceki Hali(Hata degilde ResponseEntity dönüsü yapılırken) bu şekilde ele alınıyordu
+			MatcherAssert.assertThat(ex.getStatusCode().value(), Matchers.equalTo(404));
 			
 		}
 	}
