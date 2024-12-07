@@ -87,7 +87,7 @@ public class OwnerRepositoryInMemoryImpl implements OwnerRepository {
 	@Override
 	public Owner updateOwner(Owner owner) {
 		ownersMap.replace(owner.getId(), owner);
-		return owner;
+		return ownersMap.get(owner.getId());
 		
 	}
 
