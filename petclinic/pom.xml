@@ -59,10 +59,27 @@
 			<artifactId>hamcrest-library</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+
+		<!-- H2 database in dahil edilmesi -->
+		<!-- Maven'de <scope> etiketi, bir bağımlılığın (dependency) hangi aşamalarda 
+			kullanılacağını ve erişilebilir olacağını belirler. -->
+		<!-- Notlara detay eklendi -->
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- JDBC yi kullanmak icin dahil ettik -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
 
