@@ -233,6 +233,26 @@
 Burada spring zaten hikkariyi kullanacaktır özelleştirmek yada digerini kullanmak istersek 
     spring.datasource.type=org.apache.tomcat.jdbc.pool.DataSource olarak konfigure edilmektedir.
 
+* Data Initialization(schema.sql ve data.sql icindeki sql leri calistirma)
+    Spring Boot classpath'de 
+    -> schema.sql ve data.sql 
+    script dosyalari mevcut ise bu 
+    dosyalarin icindeki sql ifadelerini bootstrap sirasinda calistirmaktadir
+     
+    application.properties icinde
+    *spring.datasource.platform=all
+    *spring.datasource.platform=dev
+    *spring.datasource.platform=test
+     
+    gibi degerler verilebilir. Sırayla
+     
+    1-schema.${platform}.sql
+    2-schema.sql
+    3-data.${platform}.sql
+    4-schema.${platform}.sql
+     
+    calistirilir.
+
 
 
 ```
