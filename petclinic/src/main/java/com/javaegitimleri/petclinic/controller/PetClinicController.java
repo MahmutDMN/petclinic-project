@@ -27,6 +27,13 @@ public class PetClinicController {
 		return maw;
 	}
 	
+	@RequestMapping(value = {"/", "/index.html"})
+	public ModelAndView index() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+	}
+	
 	
 
 	

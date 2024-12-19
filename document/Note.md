@@ -769,5 +769,10 @@ SecurityConfig Ayarlamaları detay Hk.
     Bu yapılandırma genellikle API tabanlı projelerde, şifrelerin HTTP başlıklarında güvenli bir şekilde taşınması gereken durumlar için uygun olacaktır.
     bağlam menüsü var.
 
+* Login logout kısmı Hk
+
+    http://localhost:8080/rest/owner/1 dedigimizde bizi login sayfasına yönlendirecek.
+    http://localhost:8080/login sayfasında auth bilgilerini girerek sign in yaptıgımızda http://localhost:8080/rest/owner/1 sonucunu getirecek
+    logout yapmak icin http://localhost:8080/logout'a girip logout yaptıgımız zaman cıkıs yapmıs olacaktır.
 
 ```
