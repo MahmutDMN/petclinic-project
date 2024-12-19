@@ -169,10 +169,11 @@ public class PetClinicRestControllerTests {
 	
 	@Test
 	public void testDeleteOwner() {
-		restTemplate.delete("http://localhost:8080/rest/owner/4");
+		//aşagıdaki 1 yazan yeri olmayan bir user(40) girseydik 404 verir
+		restTemplate.delete("http://localhost:8080/rest/owner/1");//40
 		try {
-			restTemplate.getForEntity("http://localhost:8080/rest/owner/4", Owner.class);
-			Assert.fail("shuold have not returned owner");
+			restTemplate.getForEntity("http://localhost:8080/rest/owner/1", Owner.class);
+			Assert.fail("should have not returned owner");
 		// } catch (RestClientException e) { Önceki Hali(Hata degilde ResponseEntity dönüsü yapılırken) bu şekilde ele alınıyordu
 		} catch (HttpClientErrorException ex) { // catch (RestClientException e) { Önceki Hali(Hata degilde ResponseEntity dönüsü yapılırken) bu şekilde ele alınıyordu
 			MatcherAssert.assertThat(ex.getStatusCode().value(), Matchers.equalTo(404));

@@ -49,8 +49,8 @@ import com.javaegitimleri.petclinic.model.Owner;
  */
 
 
-@Repository
-//@Repository("ownerRepository")
+//@Repository
+@Repository("ownerRepository")
 public class OwnerRepositoryJdbcImpl implements OwnerRepository {
 
 	@Autowired
@@ -106,7 +106,8 @@ public class OwnerRepositoryJdbcImpl implements OwnerRepository {
 
 	@Override
 	public void deleteOwner(Long id) {
-		// TODO Auto-generated method stub
+		String sql="delete from t_owner where id = ?";
+		jdbcTemplate.update(sql, id);
 
 	}
 
