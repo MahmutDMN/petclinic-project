@@ -17,6 +17,12 @@ public class PetRepositoryJpaImpl implements PetRepository {
 	public PetRepositoryJpaImpl() {
 	}
 
+	/*
+	@PersistenceContext Nedir?
+	JPA (Java Persistence API) bağlamında EntityManager nesnelerini yönetmek için kullanılır.
+	İşlevi: Bir EntityManager'i bir bean'e enjekte etmek için kullanılır. 
+	Spring, arka planda bir EntityManager nesnesi oluşturur ve onu yönetir.
+	*/
 	@PersistenceContext
 	private EntityManager entityManager;
 
