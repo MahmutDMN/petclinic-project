@@ -58,9 +58,9 @@ public class PetClinicServiceImpl implements PetClinicService {
 		// public methodlarda hata durumunda geriye alma(rollback) islemi yapar.
 		// basarili olursa zaten commitlenir.
 
-		if(true) {
-			throw new RuntimeException("testing rollback");
-		}
+//		if(true) {
+//			throw new RuntimeException("testing rollback");
+//		}
 
 		//basarılı durum (hata satırı kapalıysa )// asagıda 404 yazmasının sebebi test case inde sildigi aboneyi sorguladıgında 404 almasıdır yani islem basarılıdır 
 //		2024-12-19 04:20:03.880 DEBUG 20268 --- [nio-8080-exec-2] o.s.j.d.DataSourceTransactionManager     : Initiating transaction rollback

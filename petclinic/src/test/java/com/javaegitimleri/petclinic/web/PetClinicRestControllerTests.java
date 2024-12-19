@@ -59,7 +59,7 @@ public class PetClinicRestControllerTests {
 //		ResponseEntity<Owner> response = restTemplate.getForEntity("http://localhost:8080/rest/owner/2", Owner.class);
 
 		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
-		MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("Mahmut"));
+		MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("Ziya"));
 
 	}
 	

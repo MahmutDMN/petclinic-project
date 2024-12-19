@@ -50,7 +50,8 @@ import com.javaegitimleri.petclinic.model.Owner;
 
 
 //@Repository
-@Repository("ownerRepository")
+//@Repository("ownerRepository") // ownerRepositoryJpa Impl a yazdıgımız için bunu eski haline donderdik
+@Repository
 public class OwnerRepositoryJdbcImpl implements OwnerRepository {
 
 	@Autowired

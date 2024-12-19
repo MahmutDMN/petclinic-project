@@ -3,8 +3,18 @@ package com.javaegitimleri.petclinic.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,13 +33,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 
+@Entity
+@Table(name = "t_owner")
 @XmlRootElement
 public class Owner {
 
+	@Id
+//	@Column(name = "id") Burada property name'i ile degişken adı aynı oldugu için eşleştirmeye gerek yok 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
+	@SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence", allocationSize = 1)
 	private Long id;
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "last_name")
 	private String lastName;
 
+	@OneToMany(mappedBy = "owner")
 	private Set<Pet> pets = new HashSet<>();
 
 	public Long getId() {
