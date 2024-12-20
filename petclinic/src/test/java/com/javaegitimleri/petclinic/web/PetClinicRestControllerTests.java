@@ -12,6 +12,7 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
@@ -23,6 +24,8 @@ import com.javaegitimleri.petclinic.model.Owner;
 public class PetClinicRestControllerTests {
 
 	private RestTemplate restTemplate;
+	
+	private RestTemplateBuilder restTemplateBuilder;
 
 	/*
 	 * JUnit'teki @Before anotasyonu, test metodlarından önce çalıştırılması gereken
@@ -30,11 +33,24 @@ public class PetClinicRestControllerTests {
 	 * hazırlık işlemi yapılması gerektiğinde @Before anotasyonu kullanılır.
 	 */
 
+	//BasicAuthenticationInterceptor ile yapılabilir 1.yol
+//	@Before
+//	public void setUp() {
+//		restTemplate = new RestTemplate();
+//		BasicAuthenticationInterceptor interceptor=new BasicAuthenticationInterceptor("admin", "mahmut123");
+//		restTemplate.setInterceptors(Arrays.asList(interceptor));
+//	}
+	
+	
+	//RestTemplateBuilder ile de yapılabilir.2.yol
 	@Before
 	public void setUp() {
-		restTemplate = new RestTemplate();
-		BasicAuthenticationInterceptor interceptor=new BasicAuthenticationInterceptor("admin", "mahmut123");
-		restTemplate.setInterceptors(Arrays.asList(interceptor));
+		restTemplateBuilder = new RestTemplateBuilder();
+
+	    // RestTemplate RestTemplateBuilder ile yapılandırılıyor
+	    this.restTemplate = restTemplateBuilder
+	            .basicAuthentication("admin", "mahmut123") // Basic Auth bilgisi
+	            .build();
 	}
 
 	/**
