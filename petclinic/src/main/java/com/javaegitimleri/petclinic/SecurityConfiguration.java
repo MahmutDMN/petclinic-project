@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		//login sayfasına yönlenebilmek için http.formLogin(); yazmamız gerekiyor.
 		http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
 		http.rememberMe().userDetailsService(userDetailsService);
+		http.httpBasic();
 
 	}
 
