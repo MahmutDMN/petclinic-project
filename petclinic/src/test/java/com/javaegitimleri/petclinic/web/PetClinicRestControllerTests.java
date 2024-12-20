@@ -2,6 +2,7 @@ package com.javaegitimleri.petclinic.web;
 
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -31,6 +33,8 @@ public class PetClinicRestControllerTests {
 	@Before
 	public void setUp() {
 		restTemplate = new RestTemplate();
+		BasicAuthenticationInterceptor interceptor=new BasicAuthenticationInterceptor("admin", "mahmut123");
+		restTemplate.setInterceptors(Arrays.asList(interceptor));
 	}
 
 	/**
@@ -57,6 +61,16 @@ public class PetClinicRestControllerTests {
 		// Failure nedenini Fauliure Trace(Acılan Pencere) den anlayabiliyoruz.
 
 //		ResponseEntity<Owner> response = restTemplate.getForEntity("http://localhost:8080/rest/owner/2", Owner.class);
+
+		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
+		MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("Ziya"));
+
+	}
+	
+	@Test
+	public void testGetOwnerByIdTest2() {
+		//BasicAuth örnegi deneyecegimiz icin cokladık.TCP-Ip monitor portundan gecircegimiz icin 8085 olacak sekilde guncelledik
+		ResponseEntity<Owner> response = restTemplate.getForEntity("http://localhost:8085/rest/owner/1", Owner.class);
 
 		MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
 		MatcherAssert.assertThat(response.getBody().getFirstName(), Matchers.equalTo("Ziya"));
