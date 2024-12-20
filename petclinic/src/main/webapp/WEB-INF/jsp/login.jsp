@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +51,18 @@
             box-sizing: border-box;
         }
 
+        .login-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .login-container label {
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+        }
+
         .login-container input[type="submit"] {
             padding: 10px;
             font-size: 16px;
@@ -80,6 +92,10 @@
             <input name="username" type="text" placeholder="Username" required />
             <input name="password" type="password" placeholder="Password" required />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <label>
+                <input name="remember-me" type="checkbox" />
+                Remember Me
+            </label>
             <input type="submit" value="Login">
         </form>
         <c:if test="${not empty param.loginFailed}">
