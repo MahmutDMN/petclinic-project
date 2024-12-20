@@ -34,6 +34,13 @@ public class PetClinicController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/login.html")
+	public ModelAndView login() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("login");
+		return mav;
+	}
+	
 	
 
 	

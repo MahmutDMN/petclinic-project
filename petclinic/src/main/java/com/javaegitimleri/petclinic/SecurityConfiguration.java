@@ -16,10 +16,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// burayı override edip icerisini bos bırakırsak basicAuth islemi kaldırılır.
 		// bu configure methodunda  http.authorizeRequests().anyRequest().authenticated(); yazarsak form
 		// login yazmadıgımız için istekte 403 hatası alırız.
-		http.authorizeRequests().antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**").permitAll();
+		http.authorizeRequests().antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**","/login.html").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
 		//login sayfasına yönlenebilmek için http.formLogin(); yazmamız gerekiyor.
-		http.formLogin();
+		http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
 
 	}
 
