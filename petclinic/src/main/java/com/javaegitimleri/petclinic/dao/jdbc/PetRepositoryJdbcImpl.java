@@ -13,7 +13,7 @@ import com.javaegitimleri.petclinic.model.Pet;
 public class PetRepositoryJdbcImpl implements PetRepository {
 
 	public PetRepositoryJdbcImpl() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Autowired

@@ -72,7 +72,7 @@ public class OwnerRepositoryJdbcImpl implements OwnerRepository {
 
 
 	public OwnerRepositoryJdbcImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
