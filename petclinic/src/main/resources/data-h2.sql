@@ -1,6 +1,15 @@
-insert into users values('user1','{noop}user1',true);
-insert into users values('user2','{noop}user2',true);
-insert into users values('user3','{noop}user3',true);
+--acik hali
+--insert into users values('user1','{noop}user1',true);
+--insert into users values('user2','{noop}user2',true);
+--insert into users values('user3','{noop}user3',true);
+
+insert into users values('user1','{bcrypt}$2a$10$p83RkVn0qu5ZbFMFP42WYuv9vus4IyYt4MpDoKZtsDYGTjRitDOZS',true);
+insert into users values('user2','{bcrypt}$2a$10$TFCE7chfv6dgJmHXz0mG4.unwgbDv2dN1yfTK8M0kFfW.XDNIWMX6',true);
+insert into users values('user3','{bcrypt}$2a$10$gq.cbDJMLfLCk7pv5RTQ.edRWcKw8Wbt0sSIkHMZqmVv55wLeuMi.',true);
+
+
+
+
 
 
 insert into authorities values('user1','ROLE_USER');
