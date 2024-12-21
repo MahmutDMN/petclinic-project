@@ -815,4 +815,52 @@ SecurityConfig Ayarlamaları detay Hk.
         Ancak bu yapılandırma sadece geliştirme ortamında kullanılmalıdır; 
         üretim ortamında bu ayarları devre dışı bırakmak güvenlik açıklarına neden olabilir.
 
+* SecurityConfiguration (Web Sayfalarının Yetkilendirilmesi)
+
+    Spring Security, kullanıcı rolleri için ROLE_ ön ekini kullanır.
+        Örneğin, bir kullanıcının "EDITOR" rolü varsa, bu genellikle veritabanında ROLE_EDITOR olarak saklanır. 
+        Ancak, Spring Security, kullanıcıya bir rol atandığında, bu rolün başına ROLE_ ön ekini ekler.
+        Bu acces olarak hasRole eklenmesi spesifik olandan genel olana gore sirayla yazilmalidir. 
+
+    Burada userlara yetki rolleri verilmiştir.
+    SELECT * FROM AUTHORITIES;
+
+    USERNAME  		AUTHORITY  
+    user1			ROLE_USER
+    user2			ROLE_EDITOR
+    user2			ROLE_USER
+    user3			ROLE_ADMIN
+    user3			ROLE_EDITOR
+    user3			ROLE_USER
+    
+    SELECT * FROM USERS;
+
+    USERNAME  	PASSWORD  			ENABLED  
+    user1		{bcrypt}$2a....		TRUE
+    user2		{bcrypt}$2a....		TRUE
+    user3		{bcrypt}$2a....		TRUE
+
+    SecurityConfiguration configure Methodu
+
+    	@Override
+    	protected void configure(HttpSecurity http) throws Exception {
+    		
+    		http.authorizeRequests().antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**","/login.html").permitAll();
+    		http.authorizeRequests().antMatchers("/rest/**").access("hasRole('EDITOR')");
+    		http.authorizeRequests().antMatchers("/actuator/**").access("hasRole('ADMIN')");
+    		http.authorizeRequests().anyRequest().authenticated();
+    		http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
+    		http.rememberMe().userDetailsService(userDetailsService);
+    		http.httpBasic();
+    
+    	}
+    
+    Burada 
+
+    "/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**","/login.html" -> .permitAll() a herkes auth olmadan giriş yapabilir.
+    "/rest/**" -> .access("hasRole('EDITOR')"); //EDITOR rolünde olan userlar girebilir yetkisi yoksa giremez.
+    "/actuator/**" -> .access("hasRole('ADMIN')");  //ADMIN rolünde olan userlar girebilir yetkisi yoksa giremez.
+    http.authorizeRequests().anyRequest().authenticated(); -> anyRequestte geriye kalan tüm istekler basicAut olunarak girilmelidir.
+    
+
 ```
