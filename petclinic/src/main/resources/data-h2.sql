@@ -1,3 +1,16 @@
+insert into users values('user1','{noop}user1',true);
+insert into users values('user2','{noop}user2',true);
+insert into users values('user3','{noop}user3',true);
+
+
+insert into authorities values('user1','ROLE_USER');
+insert into authorities values('user2','ROLE_USER');
+insert into authorities values('user2','ROLE_EDITOR');
+insert into authorities values('user3','ROLE_USER');
+insert into authorities values('user3','ROLE_EDITOR');
+insert into authorities values('user3','ROLE_ADMIN');
+
+
 --data.sql ve shema.sql içi bos ise hata alırız.
 
 --insert into t_owner(id,first_name,last_name) values (1,'Omer','Tuna');
