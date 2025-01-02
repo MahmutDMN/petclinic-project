@@ -52,6 +52,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Spring Security Test : MockMvc uzerinden gonderilecek webrequest icerisine bir auth token yerlestirmemizi sagliyor. -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 
 		<!-- unit test icin eklendi. -->
 		  
