@@ -10,8 +10,11 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+//Burada WebSecurityConfigurerAdapter den degilde 
+//AbstractSecurityConfiguration (Bura zaten WebSecurityConfigurerAdapter içeriyor)(abstractan extend etmemizi) sagladık 
+//public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends AbstractSecurityConfiguration {
 
 	public SecurityConfiguration() {
 
@@ -20,8 +23,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	@Autowired
-	private DataSource dataSource;
+	//AbstractSecurityConfiguration kısmına tasidik
+//	@Autowired
+//	private DataSource dataSource;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -31,20 +35,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		//login sayfasına yönlenebilmek için http.formLogin(); yazmamız gerekiyor.
 		
 		http.authorizeRequests().antMatchers("/**/favicon.ico", "/css/**", "js/**", "/images/**", "/webjars/**","/login.html").permitAll();
-		http.authorizeRequests().antMatchers("/rest/**").access("hasRole('EDITOR')");
+		//RestSecurityConfiguration'a tasindi.
+//		http.authorizeRequests().antMatchers("/rest/**").access("hasRole('EDITOR')");
 		http.authorizeRequests().antMatchers("/actuator/**").access("hasRole('ADMIN')");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
 		http.rememberMe().userDetailsService(userDetailsService);
-		http.httpBasic();
+		
+		//Abstract classa tasıdık
+//		http.httpBasic();
 
 	}
 	
 	//Jdbc real configurasyonu bu kadar.
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource);
-	}
+	//AbstractSecurityConfiguration kısmına tasidik
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.jdbcAuthentication().dataSource(dataSource);
+//	}
 
 
 }

@@ -862,5 +862,44 @@ SecurityConfig Ayarlamaları detay Hk.
     "/actuator/**" -> .access("hasRole('ADMIN')");  //ADMIN rolünde olan userlar girebilir yetkisi yoksa giremez.
     http.authorizeRequests().anyRequest().authenticated(); -> anyRequestte geriye kalan tüm istekler basicAut olunarak girilmelidir.
     
+/*
+     * AbstractSecurityConfiguration sınıfını neden kullandığınız, projenizin tasarımı ve güvenlik yapılandırması ihtiyaçlarınıza bağlıdır. 
+     * Ancak bu tür bir yapılandırmada genellikle şu sebeplerle bir abstract class tercih edilir:
+     * 
+     1. Yeniden Kullanılabilirlik
+        Eğer projede birden fazla güvenlik yapılandırması sınıfı olacaksa, ortak olan kodları bir abstract sınıfta toplamak iyi bir yöntemdir.
+        Örneğin, projede farklı modüller için farklı güvenlik yapılandırmaları (API, admin paneli, vs.) gerekiyorsa, 
+        bu modüllerin hepsi AbstractSecurityConfiguration'dan türetilerek kolayca özelleştirilebilir.
+    2. Ortak İşlevselliğin Merkezi Yönetimi
+        Abstract sınıf, tüm türetilen sınıflar için bir "temel yapı" sağlar. Örneğin, sık kullanılan metotlar (şifreleme yapılandırmaları, genel filtreler veya erişim kontrolleri) bu sınıfta tanımlanabilir.
+        Ortak davranışları bir kez tanımlayıp türetilen tüm sınıflarda kullanılabilir hale getirirsiniz.
+    3. Kodun Daha Modüler ve Anlaşılır Olması
+        Eğer doğrudan WebSecurityConfigurerAdapter'dan türetirseniz, her güvenlik yapılandırması sınıfı tamamen bağımsız olur. Bu, kodun modülerliğini azaltabilir.
+        Abstract sınıf kullanmak, güvenlik yapılandırmanızı bir temel üzerinden yapılandırmanızı ve özelleştirmenizi sağlar.
+    4. Kolay Özelleştirme
+        Abstract sınıf, bazı metotları zorunlu olarak override edilmesi gereken abstract metotlar olarak bırakabilir. Bu, türetilen sınıfların belirli yapılandırmaları mutlaka tanımlamasını sağlar.
+     * */
 
+    Özetle 
+
+    basicAuth
+    user1
+    user1 ile sadece login olabildik
+
+    basicAuth
+    user2
+    user2 basicAuth yaptıgımızda 
+    ile editor yetkimiz vardı 
+    http://localhost:8080/rest/owner/1 sayfamızı sorguladıgımızda geldi fakat 
+    http://localhost:8080/actuator/health sayfası Admin yetkisi olup user2 icin 
+    tanımlı olmadıgı için 403 yetki hatası verdi.
+
+    basicAuth
+    user3
+    user3 yaptıgımızda hem editor hemde admin yetkisi oldugu icin 
+    http://localhost:8080/rest/owner/1
+    http://localhost:8080/actuator/health
+    
+    sayfalarına erisebildi.
+    
 ```
