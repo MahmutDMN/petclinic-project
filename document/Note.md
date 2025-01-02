@@ -1044,4 +1044,21 @@ Test Kısımları Notlar
         Test organizasyonu ve bakımını önemsiyorsanız.
     Sonuç:
         Ayrı bir test sınıfı kullanmak daha iyi bir organizasyon ve test yönetimi sağlar. Ancak, küçük ve basit projelerde tek bir sınıfla çalışmak yeterli olabilir. Büyük projelerde veya farklı modüller test ediliyorsa, her modül için ayrı bir test sınıfı oluşturmak en iyi uygulamadır.
+
+/* 
+     * TestRestTemplate, Spring Boot uygulamalarındaki REST API'lerini test etmek için kullanılır. Bu araç, özellikle entegrasyon testlerinde faydalıdır ve doğru çalışıp çalışmadığını test etmek amacıyla gerçek HTTP istekleri gönderir. 
+     * RestTemplate'in test için uyarlanmış versiyonudur ve testlerde kullanımı kolaylaştırır.
+     * Spring Boot testlerinde HTTP istemcisi olarak kullanılan bir araçtır ve özellikle bir REST API'yi test etmek amacıyla tasarlanmıştır. 
+     * TestRestTemplate, Spring Boot uygulamalarında endpoint'lerin doğru çalıştığını test etmek için kolay ve esnek bir yöntem sunar.
+     * 
+     TestRestTemplate ve RestTemplate Arasındaki Farklar:
+        TestContext Entegrasyonu: TestRestTemplate, test senaryolarında Spring Boot uygulamalarıyla entegrasyonlu çalışmak üzere özelleştirilmiş 
+        bir araçtır. 
+        RestTemplate ise daha genel bir HTTP istemcisidir ve uygulama ortamında farklı istemci ihtiyaçlarını karşılamak için kullanılır.
+        Başka Bir Avantaj: TestRestTemplate testler sırasında başlatılan Spring Boot uygulamasının bağlamını kullanır. 
+        Böylece testler sırasında daha kolay bir yapı sunar ve gerçek bir sunucuyla API uç noktalarını test eder.
+    */
+
+
+
 ```
