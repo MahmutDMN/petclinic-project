@@ -91,10 +91,12 @@
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <form:input path="firstName" id="firstName" />
+                        <form:errors path="firstName"/>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
                         <form:input path="lastName" id="lastName" />
+                        <form:errors path="lastName"/>
                     </div>
                     <div class="form-button">
                         <form:button name="submit">Create</form:button>
