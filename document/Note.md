@@ -1150,5 +1150,10 @@ Test Kısımları Notlar
 		//@Transactional anotasyonunun etkisi nedeniyle testCreateOwner3 metodunda eklediğiniz veriler veritabanına kalıcı olarak kaydedilmez. 
 		//Bunun nedeni, @Transactional anotasyonunun, her bir test metodunun başında bir işlem başlatıp, metodun sonunda işlemi rollback etmesidir.	
 
+* FakeSMTP local mail server kurmak için kullanılır.
+
+    İndirme linki (Chrome da hata veriyor.Edgeden indirilebilir.)
+    https://nilhcem.com/FakeSMTP/download.html
+    Dokumanda ekran alıntısı mevcut.
 
 ```
