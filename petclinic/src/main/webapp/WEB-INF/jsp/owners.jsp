@@ -106,6 +106,35 @@
                     white-space: nowrap;
                     z-index: 10;
                 }
+
+                .delete-button {
+                    text-decoration: none;
+                    padding: 5px 10px;
+                    background-color: #cc162c;
+                    color: white;
+                    border-radius: 3px;
+                    font-size: 14px;
+                    position: relative;
+                }
+
+                .delete-button:hover {
+                    background-color: #cc162c;
+                }
+
+                .delete-button:hover::after {
+                    content: "Kolaylik olsun diye bu buton yazilmistir.Url olarak da bu şekilde gidilebilir:http://localhost:8080/owners/delete/{id}";
+                    position: absolute;
+                    top: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-size: 12px;
+                    white-space: nowrap;
+                    z-index: 10;
+                }
             </style>
         </head>
 
@@ -128,8 +157,12 @@
                             <td>${owner.id}</td>
                             <td>${owner.firstName}</td>
                             <td>${owner.lastName}</td>
-                            <td><a href="http://localhost:8080/owners/update/${owner.id}"
-                                    class="update-button">Update</a></td>
+                            <td>
+                                <a href="http://localhost:8080/owners/update/${owner.id}"
+                                    class="update-button">Update</a>
+                                <a href="http://localhost:8080/owners/delete/${owner.id}"
+                                    class="delete-button">Delete</a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
