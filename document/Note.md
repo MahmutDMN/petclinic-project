@@ -1145,5 +1145,10 @@ Test Kısımları Notlar
      
     * */
 
+    
+//OwnerRepositoryTests classi icin @Transactional yaptigim icin testCreateOwner3 metodu icin Owner tablosuna kayit ekler mi ?
+		//@Transactional anotasyonunun etkisi nedeniyle testCreateOwner3 metodunda eklediğiniz veriler veritabanına kalıcı olarak kaydedilmez. 
+		//Bunun nedeni, @Transactional anotasyonunun, her bir test metodunun başında bir işlem başlatıp, metodun sonunda işlemi rollback etmesidir.	
+
 
 ```
