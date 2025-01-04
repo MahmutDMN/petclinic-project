@@ -62,9 +62,9 @@ public class PetClinicServiceImpl implements PetClinicService {
 		String subject="Owner Created!";
 		String text="Owner entity with id : "+ owner.getId() + " created successfully";
 		
-		//sendFakeMail(from,to,subject,text);
+		sendFakeMail(from,to,subject,text);
 		
-		customMailSend();
+//		customMailSend();
 
 	}
 	
