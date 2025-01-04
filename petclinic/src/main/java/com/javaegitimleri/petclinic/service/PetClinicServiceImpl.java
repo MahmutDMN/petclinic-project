@@ -29,6 +29,9 @@ public class PetClinicServiceImpl implements PetClinicService {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -54,17 +57,39 @@ public class PetClinicServiceImpl implements PetClinicService {
 	@Override
 	public void createOwner(Owner owner) {
 		ownerRepository.createOwner(owner);
+		String from="k@s";
+		String to="m@y";
+		String subject="Owner Created!";
+		String text="Owner entity with id : "+ owner.getId() + " created successfully";
 		
+		//sendFakeMail(from,to,subject,text);
+		
+		customMailSend();
+
+	}
+	
+	private void sendFakeMail(String from, String to, String subject, String body) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		
-		msg.setFrom("k@s");
-		msg.setTo("k@s");
-		msg.setSubject("Owner Created!");
-		msg.setText("Owner entity with id : "+ owner.getId() + " created successfully");
+		msg.setFrom(from);
+		msg.setTo(to);
+		msg.setSubject(subject);
+		msg.setText(body);
 		
 		mailSender.send(msg);
 		
-
+	}
+	
+	private void customMailSend() {
+		
+//		String from="mahmut.duman@example.com";
+		String from="mahmut.duman@gmail.com";
+		String to="alper@gmail.com";
+		String subject="Test Mail";
+		String text="Selam Alperim mailim geldi mi?";
+		
+		emailService.sendEmail(from, to, subject, text);
+		
 	}
 
 	@Override
