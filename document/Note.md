@@ -1299,5 +1299,9 @@ Kodunuzu daha temiz ve standart bir yapıda tutabilirsiniz.
 Audit işlemlerini manuel olarak yapmaktan kurtulursunuz.
 Spring Security ile entegre edilirse, oturum açmış kullanıcıların bilgileri de otomatik olarak kaydedilir.
 
+Ekte ekran alıntıları mevcut bura üzerinden data üzerindeki tüm objeleri çekip bunlar üzerinde http methodları çalıstırıabiliriz.
+http://localhost:8080/hal yazarak erişebiliriz.
+
+
 
 ```
