@@ -37,13 +37,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "t_owner")
 @XmlRootElement
-public class Owner {
+public class Owner extends BaseEntity{
 
-	@Id
-//	@Column(name = "id") Burada property name'i ile degişken adı aynı oldugu için eşleştirmeye gerek yok 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
-	@SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence", allocationSize = 1)
-	private Long id;
+	//Burası Base Entity'ye tasindi.
+//	@Id
+////	@Column(name = "id") Burada property name'i ile degişken adı aynı oldugu için eşleştirmeye gerek yok 
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
+//	@SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence", allocationSize = 1)
+//	private Long id;
 	
 	@NotEmpty
 	@Column(name = "first_name")
@@ -56,13 +57,7 @@ public class Owner {
 	@OneToMany(mappedBy = "owner")
 	private Set<Pet> pets = new HashSet<>();
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -103,7 +98,7 @@ public class Owner {
 
 	@Override
 	public String toString() {
-		return "Owner [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Owner [id=" + getId() + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }

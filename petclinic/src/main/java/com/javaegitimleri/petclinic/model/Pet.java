@@ -14,13 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_pet")
-public class Pet {
-	
-	@Id
-//	@Column(name = "id") Burada property name'i ile degişken adı aynı oldugu için eşleştirmeye gerek yok 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petClinicSeqGen")
-	@SequenceGenerator(name = "petClinicSeqGen", sequenceName = "petclinic_sequence", allocationSize = 1)
-	private Long id;
+public class Pet extends BaseEntity {
 	
 	@Column(name = "name")
 	private String name;
@@ -31,14 +25,6 @@ public class Pet {
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -66,7 +52,7 @@ public class Pet {
 
 	@Override
 	public String toString() {
-		return "Pet [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", owner=" + owner + "]";
+		return "Pet [id=" + getId() + ", name=" + name + ", birthDate=" + birthDate + ", owner=" + owner + "]";
 	}
 
 }

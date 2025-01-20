@@ -4,7 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing
 @ServletComponentScan// Servlertleri scan etmesi icin kullanılır.Spring classpatte Servlet ve Filterların olan sınıfları tespit eder.
 @SpringBootApplication
 @EnableConfigurationProperties(value = PetClinicProperties.class)
