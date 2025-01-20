@@ -31,3 +31,10 @@ alter table public.t_pet add constraint public.constraint_2 primary key (id);
 alter table public.t_pet add constraint public.constraint_3 foreign key(owner_id) references public.t_owner(id);
  
 create sequence public.petclinic_sequence start with 100;
+
+create table public.t_vet(
+	id bigint not null,
+	first_name varchar(255) not null,
+	last_name varchar(255) not null
+);
+alter table public.t_vet add constraint public.constraint_11 primary key(id);
