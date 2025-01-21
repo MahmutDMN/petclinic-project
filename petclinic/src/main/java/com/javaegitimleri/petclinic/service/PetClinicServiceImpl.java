@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional.TxType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.annotation.Secured;
@@ -61,6 +62,7 @@ public class PetClinicServiceImpl implements PetClinicService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames = "allOwners", allEntries = true) //burada allOwners ile cachelenen veriler allEntries = true oldugu için remove edilecek.Burada dönüş tipi el vermedigi için mevcut cache'i sıfırlıyoruz.
 	public void createOwner(Owner owner) {
 		ownerRepository.createOwner(owner);
 		String from="k@s";

@@ -1693,6 +1693,27 @@ Update metodunda @CachePut kullanarak cache'i güncelleyin.
 Cache sağlayıcınızda bir TTL ayarlayarak eski verilerin belirli süre sonunda temizlenmesini sağlayın.
 En yaygın çözüm @CacheEvict kullanarak cache'i temizlemek ve yeni bir istekte cache'in tekrar oluşturulmasına izin vermektir.
 
+Burada yeni sekmede http://localhost:8080/owners/new çagırılarak yeni ekleme yaptıgımızda 
+İlk tetikledigimiz http://localhost:8080/rest/owners sonucu cache de tutuldugu için db den sorgulamayıp cacheden getirecektir.
+Yeni eklenen kayıtı getirmeyecektir.
+Bunu tüm create işlemlerinde yapması için petClinic Service createOwners metodu üzerine yazdık. 
+createOwners methodu üzerine CacheEvict yazarak cache'i siliyoruz..
+
+public class PetClinicServiceImpl implements PetClinicService {
+	@Override
+	@CacheEvict(cacheNames = "allOwners", allEntries = true) 
+    //burada allOwners ile cachelenen veriler allEntries = true oldugu için remove edilecek.
+    Burada dönüş tipi el vermedigi için mevcut cache'i sıfırlıyoruz.
+	public void createOwner(Owner owner) {
+    //...
+    }
+}
+
+CacheEvict anotasyonunu ekledikten sonra senaryoda 
+İlk tetikledigimiz http://localhost:8080/rest/owners sonrasında yeni bir sekmede 
+Burada yeni sekmede http://localhost:8080/owners/new çagırılarak yeni ekleme yaptıgımızda cache'i sildigi icin 
+method çalısacak ve db sorgusunda yeni eklenen kayıtlarla birlikte güncel liste gelecektir.
+
 
 
 ```
