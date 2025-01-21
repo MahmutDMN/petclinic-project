@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
@@ -50,7 +51,7 @@ public class PetClinicRestControllerTests {
 
 	    // RestTemplate RestTemplateBuilder ile yapılandırılıyor
 	    this.restTemplate = restTemplateBuilder
-	            .basicAuthentication("admin", "mahmut123") // Basic Auth bilgisi
+	            .basicAuthentication("user2", "user2") // Basic Auth bilgisi
 	            .build();
 	}
 
@@ -212,6 +213,23 @@ public class PetClinicRestControllerTests {
 			MatcherAssert.assertThat(ex.getStatusCode().value(), Matchers.equalTo(404));
 			
 		}
+	}
+	
+	@Test
+	public void testServiceLevelValidation() {
+		try {
+			Owner owner=new Owner();
+			//owner.setFirstName("K");
+			//owner.setLastName("S");
+			
+			ResponseEntity<URI> responseEntity = restTemplate.postForEntity("http://localhost:8080/rest/owner", owner, URI.class);
+			
+			MatcherAssert.assertThat(responseEntity.getStatusCode(), Matchers.equalTo(HttpStatus.PRECONDITION_FAILED));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
