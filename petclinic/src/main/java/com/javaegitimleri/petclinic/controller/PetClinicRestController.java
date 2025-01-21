@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.tomcat.util.file.ConfigurationSource.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.ControllerLinkBuilder;
@@ -40,8 +41,10 @@ public class PetClinicRestController {
 	 *         Postman petclinic-project -> 1-/rest/owners
 	 * 
 	 */
+	@Cacheable("allOwners")//cachede yoksa methodu çalıstırıyor varsa cacheden getiriyor.
 	@RequestMapping(method = RequestMethod.GET, value = "/owners")
 	public ResponseEntity<List<Owner>> getOwners() {
+		System.out.println(">>>inside getOwners...");
 		List<Owner> owners = petClinicService.findOwners();
 		return ResponseEntity.ok(owners);
 	}
